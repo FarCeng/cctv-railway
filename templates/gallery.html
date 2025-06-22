@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Kembali ke Dashboard</a>
+        <h1>Galeri Gambar</h1>
+        <div class="gallery">
+            {% if images %}
+                {% for image_name in images %}
+                <div class="gallery-item">
+                    <a href="{{ url_for('static', filename='uploads/' + image_name) }}" target="_blank">
+                        <img src="{{ url_for('static', filename='uploads/' + image_name) }}" alt="Gambar {{ image_name }}">
+                    </a>
+                    <p>{{ image_name }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-images">Belum ada gambar yang di-capture. Kembali ke dashboard dan klik 'Capture Foto'.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

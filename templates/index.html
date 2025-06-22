@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32-CAM Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Kontrol</h2>
+        <div class="controls-group">
+            <label for="tilt">Tilt</label>
+            <div class="input-group">
+                <input type="range" id="tilt" min="0" max="180" value="{{ current_state.servo_tilt }}">
+                <input type="number" id="tilt-number" class="value-input" min="0" max="180" value="{{ current_state.servo_tilt }}">
+            </div>
+        </div>
+        <div class="controls-group">
+            <label for="pan">Pan</label>
+            <div class="input-group">
+                <input type="range" id="pan" min="0" max="180" value="{{ current_state.servo_pan }}">
+                <input type="number" id="pan-number" class="value-input" min="0" max="180" value="{{ current_state.servo_pan }}">
+            </div>
+        </div>
+        <div class="controls-group">
+            <label for="cahaya">Cahaya</label>
+            <div class="input-group">
+                <input type="range" id="cahaya" min="0" max="255" value="{{ current_state.led_intensity }}">
+                <input type="number" id="cahaya-number" class="value-input" min="0" max="255" value="{{ current_state.led_intensity }}">
+            </div>
+        </div>
+        <button id="send-controls">Kirim Perintah</button>
+        <div id="status-text"></div>
+    </div>
+
+    <div class="main-content">
+        <div class="camera-view">
+            <p class="placeholder">Stream video akan muncul di sini</p>
+            <img id="video-stream" src="" alt="Video Stream">
+        </div>
+        <div class="button-panel">
+            <button id="stream-btn">Mulai Stream</button>
+            <button id="capture-btn">Capture Foto</button>
+            <a href="/images" class="button">Lihat Galeri</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
